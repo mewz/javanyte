@@ -1,5 +1,9 @@
 package com.mewz.utils;
 
+/*
+- to do: more docs
+*/
+
 public class BinarySet {	
 	private byte[] bits;
 	
