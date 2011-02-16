@@ -16,7 +16,7 @@ public class BinarySetEx {
 		binSet = BinarySet.createBinarySetWithBytes(str.getBytes());
 	}
 	
-	public void printBytes(){
+	public void printFromBytes(){
 		System.out.println(new String(binSet.getBytes()));
 	}
 	
@@ -74,7 +74,7 @@ public class BinarySetEx {
 	public static void main(String[] args){
 		String str = "Hello";
 		BinarySetEx binStr = new BinarySetEx(str);
-		binStr.printBytes();
+		binStr.printFromBytes();
 		binStr.printBits();
 		binStr.testBitByteConversion();
 		binStr.testBitwise();
