@@ -1,7 +1,13 @@
 package com.mewz.examples;
 
+/*
+Example code - 
+*/
+
 import com.mewz.utils.BinarySet;
-import com.mewz.io.BitArrayInputStream;
+import com.mewz.io.BitInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 public class BinarySetEx {
 	private BinarySet binSet;
@@ -44,18 +50,24 @@ public class BinarySetEx {
 		}
 		System.out.println();
 	}
-	
-	public void testIO(byte[] b){
+		
+	public void testBitStream(String str){
+		BitInputStream bis = new BitInputStream(new ByteArrayInputStream(str.getBytes()));
 		try{
-			BitArrayInputStream bis = new BitArrayInputStream(b, false);
-			int res = 0;
-			while((res = bis.read()) != -1){
-				System.out.print(res);
+			int val = 0;
+			while((val = bis.read()) != -1){
+				System.out.print(val);
 			}
 			System.out.println();
 		}
-		catch(java.io.IOException ioe){
-			System.err.println(ioe.toString());
+		catch(IOException ex){
+			System.out.println(ex);
+		}
+		finally{
+			try{
+				bis.close();
+			}
+			catch(IOException ioe){ }
 		}
 	}
 	
@@ -66,6 +78,6 @@ public class BinarySetEx {
 		binStr.printBits();
 		binStr.testBitByteConversion();
 		binStr.testBitwise();
-		binStr.testIO(str.getBytes());
+		binStr.testBitStream(str);
 	}
 }
