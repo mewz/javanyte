@@ -1,6 +1,5 @@
 package com.mewz.io;
 
-import java.util.Vector;
 import java.io.InputStream;
 import java.io.IOException;
 
