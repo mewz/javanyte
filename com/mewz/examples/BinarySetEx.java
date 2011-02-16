@@ -17,7 +17,7 @@ public class BinarySetEx {
 	}
 	
 	public void printFromBytes(){
-		System.out.println(new String(binSet.getBytes()));
+		//System.out.println(new String(binSet.getBytes()));
 	}
 	
 	public void printBits(){
@@ -46,7 +46,7 @@ public class BinarySetEx {
 	
 	public void printByteArray(byte[] b){
 		for(int i = 0; i < b.length; i ++){
-			System.out.print(b[i]);
+			System.out.print((int)b[i]);
 		}
 		System.out.println();
 	}
@@ -70,7 +70,7 @@ public class BinarySetEx {
 			catch(IOException ioe){ }
 		}
 	}
-	
+		
 	public static void main(String[] args){
 		String str = "Hello";
 		BinarySetEx binStr = new BinarySetEx(str);
