@@ -126,7 +126,6 @@ public class BinarySet {
 	//private method to perform bitwise operations
 	private void bitwise(BinarySet set, BitwiseCallback callback){
 		int min = (set.length() <= this.length()) ? set.length() : this.length();
-		System.out.println("setlen: " + set.length() + " this len: " + this.length() + " min: " + min);
 		for(int i = 0; i < min; i ++){
 			this.setBitAtIndex(i, callback.bitwiseOperand(this.getBitAtIndex(i), set.getBitAtIndex(i)));
 		}
