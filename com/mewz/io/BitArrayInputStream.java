@@ -6,7 +6,6 @@ import java.io.IOException;
 public class BitArrayInputStream extends InputStream{
 
 	protected byte[] bitbuf;
-	protected int count;
 	protected int pos;
 	
 	public BitArrayInputStream(byte[] bytes, boolean asBits){
@@ -23,6 +22,7 @@ public class BitArrayInputStream extends InputStream{
 				}
 			}
 		}
+		this.pos = 0;
 	}
 
 	public int read() throws IOException {
