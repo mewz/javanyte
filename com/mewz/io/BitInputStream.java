@@ -10,9 +10,9 @@ import java.io.IOException;
 */
 public class BitInputStream extends InputStream{
 	private InputStream inputStream;
-	private int bitIndex;
 	private byte currentByte;
 	private byte byteVal;
+	private int bitIndex;
 
 	/*
 	* Construct with another InputStream.
@@ -29,16 +29,14 @@ public class BitInputStream extends InputStream{
 	@throws IOException if an I/O error occured
 	*/
 	public int read() throws IOException{
-		//I realize I could consolidate this into one if, however, the problem is in reading the first byte
-		//I don't wish to read it in any other place such as the constructor because it'll have to either 
-		//throw an IOException, or I'll have to catch it on read()
-		if(this.bitIndex == 8){
+		//If this is the first read, bitIndex will be 0 and currentByte and byteVal needs to be set.
+		//Otherwise, if bitIndex is 8, we need to read in the next byte and reset bitIndex to 0.
+		if(bitIndex == 0 || this.bitIndex == 8){
 			this.bitIndex = 0;
-		}
-		if(bitIndex == 0){
 			this.currentByte = (byte)this.inputStream.read();
 			this.byteVal = this.currentByte;
 		}
+		//if the currentByte is -1, return -1 to indicate we are finshed
 		if(this.currentByte == -1) return -1;
 		
 		int val = ((this.byteVal & 128) == 0) ? (byte)0 : (byte)1;
