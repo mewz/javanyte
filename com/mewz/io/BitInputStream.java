@@ -35,8 +35,6 @@ public class BitInputStream extends InputStream{
 			this.bitIndex = 0;
 		}
 		if(bitIndex == 0){
-			//we are casting down from an int which could lead to an int overflow
-			//however, the javadocs say read, which returns an int, will read the next byte
 			this.currentByte = (byte)this.inputStream.read();
 			this.byteVal = this.currentByte;
 		}
@@ -90,14 +88,6 @@ public class BitInputStream extends InputStream{
 			bits[i] = (byte)b;
 		}
 		return i;
-	}
-	
-	/*
-	Closes the InputStream
-	*/
-	public void close() throws IOException {
-		this.inputStream.close();
-		this.currentByte = -1;
 	}
 	
 	/*
