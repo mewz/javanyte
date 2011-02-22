@@ -77,17 +77,13 @@ public class BinarySet {
 	if index + 8 is less than the bit buffer. Otherwise it will read in up to the bit buffer length or zero if index is 
 	greater than the bit buffer length.
 	@param index the index at where to start adding up the byte from the bit buffer 
-	@unsigned true for an unsigned byte, false for a signed byte
 	@throws IndexOutOfBoundsException if index is less than zero
 	*/
-	public byte getByteAtIndex(int index, boolean unsigned){
+	public byte getByteAtIndex(int index){
 		byte val = 0;
 		int max = (index + 8 < this.bits.length) ? index + 8 : this.bits.length;
 		for(int i = index, j = 0; i < max; i ++, j ++){
 			val += Math.pow(2, 7 - j) * this.bits[i];
-		}
-		if(unsigned){
-			val = (byte)(0x000000FF & val);
 		}
 		return val;
 	}
@@ -122,23 +118,7 @@ public class BinarySet {
 		}
 		byte bytes[] = new byte[bytesLen];
 		for(int index = 0, count = 0; count < bytes.length; index += 8, count ++){
-			bytes[count] = this.getByteAtIndex(index, false);
-		}
-		return bytes;
-	}
-	
-	/*
-	Convert the bit buffer into unsigned bytes. If the bit buffer is not divisible by 8, the remainder will converted
-	@return the converted bit buffer as a byte buffer
-	*/
-	public byte[] getUnsignedBytes(){
-		int bytesLen = this.bits.length / 8;
-		if(this.bits.length % 8 != 0){
-			bytesLen ++;
-		}
-		byte bytes[] = new byte[bytesLen];
-		for(int index = 0, count = 0; count < bytes.length; index += 8, count ++){
-			bytes[count] = this.getByteAtIndex(index, true);
+			bytes[count] = this.getByteAtIndex(index);
 		}
 		return bytes;
 	}

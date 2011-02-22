@@ -6,7 +6,9 @@ Example code -
 
 import com.mewz.utils.BinarySet;
 import com.mewz.io.BitInputStream;
+import com.mewz.io.BitOutputStream;
 import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class BinarySetEx {
@@ -14,10 +16,6 @@ public class BinarySetEx {
 
 	public BinarySetEx(String str){
 		binSet = BinarySet.createBinarySetWithBytes(str.getBytes());
-	}
-	
-	public void printFromBytes(){
-		//System.out.println(new String(binSet.getBytes()));
 	}
 	
 	public void printBits(){
@@ -32,7 +30,7 @@ public class BinarySetEx {
 	}
 	
 	public void testBitwise(){
-		byte[] b1 = {0, 0, 0, 1, 1, 0, 0, 0};
+		byte[] b1 = {1, 0, 0, 0, 0, 0, 0, 0};
 		byte[] b2 = {0, 0, 0, 1, 0, 0, 0};
 		
 		BinarySet bset1 = BinarySet.createBinarySetWithBits(b1);
@@ -53,10 +51,13 @@ public class BinarySetEx {
 		
 	public void testBitStream(String str){
 		BitInputStream bis = new BitInputStream(new ByteArrayInputStream(str.getBytes()));
+		BitOutputStream bos = null;
 		try{
+			bos = new BitOutputStream(new FileOutputStream("hello.txt"));
 			int val = 0;
 			while((val = bis.read()) != -1){
 				System.out.print(val);
+				bos.write(val);
 			}
 			System.out.println();
 		}
@@ -74,7 +75,6 @@ public class BinarySetEx {
 	public static void main(String[] args){
 		String str = "Hello";
 		BinarySetEx binStr = new BinarySetEx(str);
-		binStr.printFromBytes();
 		binStr.printBits();
 		binStr.testBitByteConversion();
 		binStr.testBitwise();
