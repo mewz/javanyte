@@ -21,6 +21,7 @@ public class BitOutputStream extends OutputStream {
 	@throws IOException if an I/O error occured
 	*/
 	public BitOutputStream(OutputStream outputStream){
+		super();
 		this.outputStream = outputStream;
 		this.byteIndex = 0;
 		this.byteVal = 0;
@@ -34,6 +35,7 @@ public class BitOutputStream extends OutputStream {
 	@throws IOException if an I/O error occured
 	*/
 	public BitOutputStream(OutputStream outputstream, boolean autoflush){
+		super();
 		this.outputStream = outputstream;
 		this.byteIndex = 0;
 		this.byteVal = 0;

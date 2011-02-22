@@ -19,6 +19,7 @@ public class BitInputStream extends InputStream{
 	* @see BitInputStream bis = new BitInputStream(new ByteArrayInputStream(new String("hello").getBytes()))
 	*/
 	public BitInputStream(InputStream inputStream){
+		super();
 		this.inputStream = inputStream;
 	}
 	
