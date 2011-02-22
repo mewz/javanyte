@@ -49,16 +49,9 @@ public class BitOutputStream extends OutputStream {
 	@throws NullPointerException is b is null
 	*/
 	public void write(int b) throws IOException{
-		this.byteVal += Math.pow(2, 7 - byteIndex++) * ((b == 0) ? 0 : 1);
-	
-		if(this.byteIndex == 8){
-			this.byteIndex = 0;
-			if(this.autoflush){
-				this.outputStream.write(this.byteVal);
-			}
-		}
-		if(byteIndex == 0){
-			this.byteVal = 0;
+		this.byteVal += Math.pow(2, 7 - byteIndex++) * ((b == 0) ? 0 : 1);	
+		if(this.byteIndex == 8 && this.autoflush){
+			this.flush();
 		}
 	}
 	
