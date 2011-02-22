@@ -1,3 +1,4 @@
-Didn't like Java's BitSet utility so I made my own. You can use it as a collection or as an IO stream.
+Didn't like Java's BitSet utility and wanted to make a custom one as both a Bit I/O and a util collection.
 
-Still in progress, if you find issues send me a message: sshjason at gmail.com
+If you find any issues, please let me know: sshjason at gmail dot com
+
